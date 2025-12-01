@@ -1,9 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 :root {
   --color-primary: #6683e4;
   --color-secondary: #e3955d;
   --color-accent: #10B981;
+
+  /* -----sidebar colors ------ */
+  --color-pink: #E60076;
+  --color-zinc: #303035;
+  --color-blue: #328BEC;
+  --color-green: #53AC57;
+  --color-yellow:#FD9912;
+  --color-red: #EA4844;
+  --color-white: #FFFFFF;
+  --color-dark: #3E3E45;
+
+  --family-roboto: "Roboto", "sans-serif";
+}
+
+.roboto {
+  font-family: var(--family-roboto);
+}
+
+.bg-pink {
+  background-color: var(--color-pink);
+}
+
+.bg-zinc {
+  background-color: var(--color-zinc);
+}
+
+.bg-blue {
+  background-color: var(--color-blue);
+}
+
+.bg-green {
+  background-color: var(--color-green);
+}
+
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+
+.bg-red {
+  background-color: var(--color-red);
+}
+
+.type-white {
+  background-color: var(--color-white);
+  box-shadow: 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.type-dark {
+  background-color: var(--color-dark);
+  /* color: white; */
+  box-shadow: none;
+}
+
+.type-transparent {
+  background-color: transparent;
 }
 
 .text-primary {
