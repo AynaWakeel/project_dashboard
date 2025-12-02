@@ -8,20 +8,21 @@ interface navbarProps {
     isSidebarOpen:boolean;
     setIsSidebarOpen:React.Dispatch<React.SetStateAction<boolean>>;
     setIsPopupOpen:React.Dispatch<React.SetStateAction<boolean>>;
+    theme:boolean;
 }
 
-const Navbar:React.FC<navbarProps> = ({isSidebarOpen,setIsSidebarOpen,setIsPopupOpen}) => {
+const Navbar:React.FC<navbarProps> = ({isSidebarOpen,setIsSidebarOpen,setIsPopupOpen ,theme}) => {
     return (
         <>
 
-            <div className="flex flex-col md:flex-row justify-between items-start gap-2 md:px-6 px-4">
+            <div className={`flex flex-col md:flex-row justify-between items-start gap-2 md:px-6 px-4 pb-6 ${theme ? "background-nevyBlue" : "background-light"}`}>
                 <div className="flex flex-col lg:gap-1">
                     <div className="flex justify-start items-center gap-2">
                         <h5 className="text-sm text-zinc-500 font-normal roboto">Pages / </h5>
-                        <h5 className="text-sm text-zinc-800 font-normal roboto">Dashboard</h5>
+                        <h5 className="text-sm  font-normal roboto">Dashboard</h5>
                     </div>
                     <div>
-                        <h2 className="text-base text-zinc-800 font-semibold roboto">Dashboard</h2>
+                        <h2 className="text-base font-semibold roboto">Dashboard</h2>
                     </div>
                 </div>
 

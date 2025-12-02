@@ -11,18 +11,15 @@ interface settingProps {
   setSidebarColorSelected: (color: string) => void;
   sidenavTypeSelected:string;
   setSidenavTypeSelected:(type:string)=>void;
+  theme:boolean;
+  handleTheme:()=>void;
 }
 
-const SettingPopup: React.FC<settingProps> = ({ isPopupOpen, onClosePopup, setSidebarColorSelected  , sidenavTypeSelected, setSidenavTypeSelected }) => {
+const SettingPopup: React.FC<settingProps> = ({ isPopupOpen, onClosePopup, setSidebarColorSelected,sidenavTypeSelected, setSidenavTypeSelected, theme, handleTheme }) => {
 
   const [checked, setChecked] = useState<boolean>(false);
   const handleChange = () => {
     setChecked(p => !p);
-  };
-
-  const [theme, setTheme] = useState<boolean>(false);
-  const handleTheme = () => {
-    setTheme(p => !p);
   };
 
   const sidebarColors = [
@@ -45,40 +42,40 @@ const SettingPopup: React.FC<settingProps> = ({ isPopupOpen, onClosePopup, setSi
 
       {isPopupOpen &&
 
-        <div className='h-full w-[340px] bg-white p-8'>
-          <div className="flex justify-between items-center border-b border-zinc-100 pb-6">
+        <div className={`h-full w-[360px] p-8 ${theme ? "theme-dark" : "theme-light"}`}>
+          <div className="flex justify-between items-center border-change pb-6">
             <div>
-              <h1 className='text-xl text-[#344767] font-bold roboto'>Material UI Configurator</h1>
-              <h3 className='text-base text-zinc-500 font-light roboto'>See our dashboard options.</h3>
+              <h1 className='text-xl font-bold roboto'>Material UI Configurator</h1>
+              <h3 className='text-base font-light roboto'>See our dashboard options.</h3>
             </div>
             <div onClick={onClosePopup}><IoClose className='text-xl text-zinc-500' /></div>
           </div>
 
           <div className="py-4">
-            <h5 className='text-base text-[#344767] font-bold roboto'>Sidebar Colors</h5>
+            <h5 className='text-base font-bold roboto'>Sidebar Colors</h5>
             <div className="flex justify-start items-center gap-2 py-2">
 
               {sidebarColors.map((clr) => (
-                <div className={`w-6 h-6 bg-${clr} rounded-full`} onClick={() => setSidebarColorSelected(clr)}></div>
+                <div className={`w-6 h-6 bg-${clr} rounded-full border border-zinc-100`} onClick={() => setSidebarColorSelected(clr)}></div>
               ))}
 
             </div>
           </div>
 
-          <div className="">
-            <h5 className='text-base text-[#344767] font-bold roboto'>Sidenav Types</h5>
-            <h3 className='text-sm text-zinc-500 font-light roboto py-1'>Choose between 2 different sidenav types.</h3>
+          <div>
+            <h5 className='text-base font-bold roboto'>Sidenav Types</h5>
+            <h3 className='text-sm font-light roboto py-1'>Choose between 2 different sidenav types.</h3>
             <div className="flex justify-start items-center gap-2 py-2">
 
               {sidenavTypes.map((typ) => (
-                <button key={typ} className={`text-center w-full py-3 px-4 roboto rounded-md text-xs  font-bold  uppercase border shadow-md shadow-zinc-300 ${sidenavTypeSelected === typ ? "bg-zinc-800 text-white" : "border-zinc-600 text-[#344767] bg-white"} `} onClick={()=>setSidenavTypeSelected(typ)}>{typ}</button>
+                <button key={typ} className={`text-center w-full py-3 px-4 roboto rounded-md text-xs font-bold uppercase  ${sidenavTypeSelected === typ ? " active-btn-type" : " btn-type"} `} onClick={()=>setSidenavTypeSelected(typ)}>{typ}</button>
               ))}
 
             </div>
           </div>
 
-          <div className="py-6 flex justify-between items-center border-b border-zinc-100">
-            <h5 className='text-base text-[#344767] font-bold roboto'>Navbar Fixed</h5>
+          <div className="py-6 flex justify-between items-center border-change">
+            <h5 className='text-base font-bold roboto'>Navbar Fixed</h5>
 
              <Switch
               checked={checked}
@@ -97,8 +94,8 @@ const SettingPopup: React.FC<settingProps> = ({ isPopupOpen, onClosePopup, setSi
             />
           </div>
 
-          <div className="py-6 flex justify-between items-center border-b border-zinc-100">
-            <h5 className='text-base text-[#344767] font-bold roboto'>Light / Dark</h5>
+          <div className="py-6 flex justify-between items-center border-change">
+            <h5 className='text-base font-bold roboto'>Light / Dark</h5>
 
             <Switch
               checked={theme}
@@ -116,9 +113,9 @@ const SettingPopup: React.FC<settingProps> = ({ isPopupOpen, onClosePopup, setSi
               id="material-switch"
             />
           </div>
-
+        
           <div className="pt-6 pb-2">
-            <button className='text-center w-full py-3 px-4 roboto rounded-md text-xs text-[#344767] font-bold bg-white uppercase border border-zinc-600'>View Documentation</button>
+            <button className='text-center w-full py-3 px-4 roboto rounded-md text-xs font-bold uppercase border border-zinc-600'>View Documentation</button>
           </div>
 
 
@@ -127,17 +124,17 @@ const SettingPopup: React.FC<settingProps> = ({ isPopupOpen, onClosePopup, setSi
             <div className="flex justify-center items-center gap-2 border border-zinc-200 bg-zinc-100 w-26 rounded-md my-2 py-1">
               <div className="flex justify-center items-center gap-1 ">
                 <FaRegStar className="text-sm text-zinc-800" />
-                <h3 className='text-sm text-zinc-800 font-normal roboto'>star</h3>
+                <h4 className='text-sm text-zinc-800 font-normal roboto'>star</h4>
               </div>
               <div>
-                <h3 className='text-xs text-zinc-800 font-normal roboto'>11,271</h3>
+                <h4 className='text-xs text-zinc-800 font-normal roboto'>11,271</h4>
               </div>
             </div>
 
-            <h5 className='text-base text-[#344767] font-bold roboto'>Thank you for sharing!</h5>
+            <h5 className='text-base font-bold roboto'>Thank you for sharing!</h5>
             <div className="flex justify-between items-center gap-4 pt-3">
-              <button className='flex justify-center items-center gap-1 text-center w-full px-5 py-2.5 roboto rounded-md text-xs bg-[#344767] font-bold text-white uppercase border border-zinc-600 shadow-md shadow-zinc-300'> <TiSocialTwitter className="text-xl " /> Tweet</button>
-              <button className='flex justify-center items-center gap-1 text-center w-full px-5 py-2.5 roboto rounded-md text-xs bg-[#344767] font-bold text-white uppercase border border-zinc-600 shadow-md shadow-zinc-300'><RiFacebookBoxFill className="text-xl " /> SHARE</button>
+              <button className='flex justify-center items-center gap-1 text-center w-full px-5 py-2.5 roboto rounded-md text-xs bg-[#344767] font-bold text-white uppercase'> <TiSocialTwitter className="text-xl " /> Tweet</button>
+              <button className='flex justify-center items-center gap-1 text-center w-full px-5 py-2.5 roboto rounded-md text-xs bg-[#344767] font-bold text-white uppercase'><RiFacebookBoxFill className="text-xl " /> SHARE</button>
             </div>
           </div>
         </div>
